@@ -1,0 +1,9 @@
+CREATE DATABASE rest_api_db;
+USE rest_api_db;
+
+CREATE TABLE persons (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    age INT,
+    email VARCHAR(255)
+);
