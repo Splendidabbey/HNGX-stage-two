@@ -18,7 +18,7 @@ This documentation provides details on how to use the PHP REST API for managing 
 }
 ```
 
-###Get Person Details
+### Get Person Details
 **Endpoint:** `GET /api/{id}` ```https://splendidabbey.afobe.net/api/1```
 
 Response Example:
@@ -31,7 +31,7 @@ Response Example:
 }
 ```
 
-###Update Person Details
+### Update Person Details
 **Endpoint:** `PUT /api/{id}` ```https://splendidabbey.afobe.net/api/1```
 
 Request Body:
@@ -42,19 +42,19 @@ Request Body:
 }
 ```
 
-###Delete a Person
+### Delete a Person
 **Endpoint:** `DELETE /api/{id}` ```https://splendidabbey.afobe.net/api/1```
 
-###Dynamic Parameter Handling
+### Dynamic Parameter Handling
 You can use the name parameter to filter persons by name. For example, if you want to perform CRUD operations on a person named "John Doe," you can provide the name in the request.
 
-###Error Handling
+### Error Handling
 The API returns appropriate error responses for invalid requests, missing parameters, and database errors.
 
-###Testing
+### Testing
 You can run automated tests using PHPUnit. See the README for instructions on running tests.
 
-###License
+### License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 
