@@ -20,7 +20,7 @@ Get Person Details
 Endpoint: GET /api/{id}
 
 Response Example:
-
+```
 
 {
   "id": 1,
