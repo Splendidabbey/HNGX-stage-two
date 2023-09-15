@@ -25,7 +25,7 @@ cd php-rest-api
 2. Install XAMPP or any similar Web server Apllication, then start Apache and Mysql
 
 
-3. Create a MySQL database and import the schema from `database.sql`.
+3. Create a MySQL database and import the schema from `persons.sql`.
 
 4. Configure the database connection in `config.php`.
 
