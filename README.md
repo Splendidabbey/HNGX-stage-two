@@ -17,7 +17,7 @@ Follow these instructions to set up and run the API on your local machine.
 
 1. Clone this repository to your local machine.
 
-git clone https://github.com/yourusername/php-rest-api.git
+git clone https://github.com/yourusername/p.githp-rest-api
 cd php-rest-api
 
 
