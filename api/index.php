@@ -3,6 +3,10 @@ include_once "include/conndb.php";
 
 // Handle HTTP requests
 $method = $_SERVER['REQUEST_METHOD'];
+$requestPath = $_SERVER['REQUEST_URI'];
+
+// Define the base API path
+$basePath = '/api';
 
 switch ($method) {
     case 'GET':
@@ -79,13 +83,19 @@ function createPerson($conn, $data) {
     $age = intval($data->age);
     $email = $data->email;
     
+    // Validations on name, age and email
     if (empty($name) || !is_string($name)) {
         header("HTTP/1.0 400 Bad Request");
         echo "Invalid 'name' parameter.";
         return;
+    }   elseif (empty($age) || !is_int($age)) {
+        header("HTTP/1.0 400 Bad Request");
+        echo "Invalid 'age' parameter.";
+    }   elseif (empty($email) || !validateEmail($email)) {
+        header("HTTP/1.0 400 Bad Request");
+        echo "Invalid 'email' parameter.";
     }
     
-    // Perform similar validation for other fields (age, email)
     
     $stmt = $conn->prepare("INSERT INTO persons (name, age, email) VALUES (?, ?, ?)");
     $stmt->bind_param("sis", $name, $age, $email);
@@ -100,7 +110,35 @@ function createPerson($conn, $data) {
 }
 
 function updatePerson($conn, $id, $data) {
-    // Validate data fields (name, age, email) and update SQL statement accordingly
+    $name = $data->name;
+    $age = intval($data->age);
+    $email = $data->email;
+
+    // Validations on name, age, and email
+    if (empty($name) || !is_string($name)) {
+        header("HTTP/1.0 400 Bad Request");
+        echo "Invalid 'name' parameter.";
+        return;
+    } elseif (empty($age) || !is_int($age)) {
+        header("HTTP/1.0 400 Bad Request");
+        echo "Invalid 'age' parameter.";
+        return;
+    } elseif (empty($email) || !validateEmail($email)) {
+        header("HTTP/1.0 400 Bad Request");
+        echo "Invalid 'email' parameter.";
+        return;
+    }
+
+    $stmt = $conn->prepare("UPDATE persons SET name = ?, age = ?, email = ? WHERE id = ?");
+    $stmt->bind_param("sisi", $name, $age, $email, $id);
+    $stmt->execute();
+
+    if ($stmt->affected_rows === 1) {
+        header("HTTP/1.0 200 OK");
+    } else {
+        header("HTTP/1.0 500 Internal Server Error");
+        echo "Error: " . $stmt->error;
+    }
 }
 
 function deletePerson($conn, $id) {
@@ -115,6 +153,19 @@ function deletePerson($conn, $id) {
         echo "Error: " . $stmt->error;
     }
 }
+
+function validateEmail($email) {
+    // Define a regular expression pattern for a valid email address
+    $pattern = '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/';
+
+    // Use the preg_match function to check if the email matches the pattern
+    if (preg_match($pattern, $email)) {
+        return true; // Valid email
+    } else {
+        return false; // Invalid email
+    }
+}
+
 
 $conn->close();
 ?>

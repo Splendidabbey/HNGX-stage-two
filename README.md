@@ -22,10 +22,7 @@ cd php-rest-api
 
 
 
-2. Install PHP dependencies using Composer.
-
-composer install
-
+2. Install XAMPP or any similar Web server Apllication, then start Apache and Mysql
 
 
 3. Create a MySQL database and import the schema from `database.sql`.

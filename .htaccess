@@ -1,0 +1,18 @@
+RewriteEngine On
+RewriteBase /   # Use '/' as the base URL
+
+# Rewrite for GET requests to fetch details of a person
+RewriteCond %{REQUEST_METHOD} GET
+RewriteRule ^api/([0-9]+)$ api.php?id=$1 [L]
+
+# Rewrite for POST requests to create a new person
+RewriteCond %{REQUEST_METHOD} POST
+RewriteRule ^api$ api.php [L]
+
+# Rewrite for PUT requests to modify details of an existing person
+RewriteCond %{REQUEST_METHOD} PUT
+RewriteRule ^api/([0-9]+)$ api.php?id=$1 [L]
+
+# Rewrite for DELETE requests to remove a person
+RewriteCond %{REQUEST_METHOD} DELETE
+RewriteRule ^api/([0-9]+)$ api.php?id=$1 [L]
