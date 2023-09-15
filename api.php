@@ -3,10 +3,6 @@ include_once "include/conndb.php";
 
 // Handle HTTP requests
 $method = $_SERVER['REQUEST_METHOD'];
-$requestPath = $_SERVER['REQUEST_URI'];
-
-// Define the base API path
-$basePath = '/api';
 
 switch ($method) {
     case 'GET':
