@@ -6,11 +6,11 @@ This documentation provides details on how to use the PHP REST API for managing 
 
 ### Create a Person
 
-**Endpoint:** `POST /api`
+**Endpoint:** `POST` ```https://splendidabbey.afobe.net/api```
 
 **Request Body:**
 
-```json
+json
 {
   "name": "John Doe",
   "age": 30,
